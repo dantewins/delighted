@@ -12,7 +12,7 @@ module.exports = {
      * @param {String[]} args
      */
 
-    run: async (client, message, args, db) => {
+    run: async (client, message, args) => {
         const msg = await message.channel.send(`🏓 Pinging...`)
         const embed = new MessageEmbed()
             .setTitle('Pong!')

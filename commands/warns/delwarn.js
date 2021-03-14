@@ -6,7 +6,7 @@ module.exports = {
     category: "moderation",
     aliases: ['rw'],
     description: 'Deletes warn mentioned.',
-    run : async (client, message, args, db) => {
+    run : async (client, message, args) => {
         if (!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('You do not have permission to use this command.');
 
         const caseNo = args[0];

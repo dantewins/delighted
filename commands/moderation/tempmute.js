@@ -6,7 +6,7 @@ module.exports = {
     category: "moderation",
     aliases: ['tm'],
     description: 'Temporarily mutes the mentioned user.',
-    run : async (client, message, args, db) => {
+    run : async (client, message, args) => {
         if (!message.member.hasPermission("MUTE_MEMBERS")) return message.channel.send("You do not have permission to mute members.");
         if (!message.guild.me.hasPermission("MANAGE_ROLES")) return message.channel.send("I do not have \`MANAGE_ROLES\` permission.");
 

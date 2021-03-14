@@ -5,7 +5,7 @@ module.exports = {
     category: "utilities",
     aliases: ['p'],
     description: 'Clears the amount of messages stated.',
-    run: async (client, message, args, db) => {
+    run: async (client, message, args) => {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("You do not have permission to use this command.");
         if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return message.channel.send("I do not have \`MANAGE_MESSAGES\` permission.");
         if (!args[0]) return message.channel.send("You must state a number of messages to purge. \`-purge number\`");

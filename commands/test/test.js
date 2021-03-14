@@ -5,7 +5,7 @@ module.exports = {
     category: "test",
     aliases: ['test'],
     description: 'This is a test command.',
-    run : async (client, message, args, db) => {
+    run : async (client, message, args) => {
         
     }
 }

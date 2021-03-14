@@ -5,7 +5,7 @@ module.exports = {
     name: 'warnings',
     category: "moderation",
     description: 'Finds and displays the warnings of the mentioned user.',
-    run : async(client, message, args, db) => {
+    run : async(client, message, args) => {
         const mentionedMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
 
         if(!mentionedMember) return message.channel.send("The member mentioned is not in this server.");

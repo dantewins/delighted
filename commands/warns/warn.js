@@ -6,7 +6,7 @@ module.exports = {
     category: "moderation",
     aliases: ['w'],
     description: 'Warns the mentioned user.',
-    run: async (client, message, args, db) => {
+    run: async (client, message, args) => {
         if (!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('You do not have permission to warn members.');
 
         const mentionedMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);

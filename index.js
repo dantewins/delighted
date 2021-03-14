@@ -11,25 +11,15 @@ const client = new Client({
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb+srv://Delighted:zCoXEr8Qdqihgcle@delighted.7zbf2.mongodb.net/Data', {
-    useUnifiedTopology : true,
+    useUnifiedTopology: true,
     useNewUrlParser: true,
 }).then(console.log('Successfully connected to MongoDB!'));
 
-const firebase = require('firebase/app');
-const FieldValue = require('firebase-admin').firestore.FieldValue;
-const admin = require('firebase-admin');
-const serviceAccount = require('./serviceAccount.json');
+const guildsSchema = require('./models/guildsSchema');
 
-admin.initializeApp ({
-    credential : admin.credential.cert(serviceAccount)
-});
-
-let db = admin.firestore();
-
-let prefix;
 const config = require('./config.json');
 const token = config.token;
-const { database } = require('./models/modSchema');
+const prefix = config.prefix;
 
 client.commands = new Collection();
 client.aliases = new Collection();
@@ -45,37 +35,42 @@ client.on('ready', () => {
 });
 
 client.on('message', async message => {
+    const guildDB = await guildsSchema.findOne({
+        guildId: message.guild.id
+    });
+
+    if (!guildDB) {
+        const newGuild = new guildsSchema({
+            guildId: message.guild.id,
+            prefix: '-'
+        });
+
+        newGuild.save((err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log("guild was added to the db")
+                client.prefix = '-'
+            }
+        })
+    } else {
+        client.prefix = guildDB.prefix;
+    }
+
     if (!message.guild) return;
-    db.collection('guilds').doc(message.guild.id).get().then((q) => {
-        if (q.exists) {
-            prefix = q.data().prefix;
-        }
-    }).then(async () => {
-        if (message.author.bot) return;
-        if (!message.content.startsWith(prefix)) return;
-        if (!message.member) message.member = await message.guild.fetchMember(message);
+    if (message.author.bot) return;
+    if (!message.content.startsWith(client.prefix)) return;
+    if (!message.member) message.member = await message.guild.fetchMember(message);
 
-        const args = message.content.slice(prefix.length).trim().split(/ +/g);
-        const cmd = args.shift().toLowerCase();
+    const args = message.content.slice(client.prefix.length).trim().split(/ +/g);
+    const cmd = args.shift().toLowerCase();
 
-        if (cmd.length == 0) return;
+    if (cmd.length == 0) return;
 
-        let command = client.commands.get(cmd);
+    let command = client.commands.get(cmd);
 
-        if (!command) command = client.commands.get(client.aliases.get(cmd));
-        if (command) command.run(client, message, args, db);
-    });
-});
-
-client.on('guildCreate', async gData => {
-    db.collection('guilds').doc(gData.id).set({
-        'guildID' : gData.id,
-        'guildName' : gData.name,
-        'guildOwner' : gData.owner.user.username,
-        'guildOwnerID' : gData.owner.id,
-        'guildMemberCount' : gData.memberCount,
-        'prefix' : '-'
-    });
+    if (!command) command = client.commands.get(client.aliases.get(cmd));
+    if (command) command.run(client, message, args);
 });
 
 client.login(token);

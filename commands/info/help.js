@@ -10,7 +10,7 @@ module.exports = {
   category: "info",
   aliases: ['h'],
   description: "Shows all available bot commands.",
-  run: async (client, message, args, db) => {
+  run: async (client, message, args) => {
     db.collection('guilds').doc(message.guild.id).get().then((q) => {
       if (q.exists) {
         prefix = q.data().prefix;

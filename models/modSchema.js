@@ -9,4 +9,4 @@ let Schema = new mongoose.Schema ({
     reason : String
 })
 
-module.exports = mongoose.model('Moderation', Schema);
+module.exports = mongoose.model('moderation', Schema);

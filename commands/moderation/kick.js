@@ -5,7 +5,7 @@ module.exports = {
     category: "moderation",
     aliases: ['k'],
     description: 'Kicks the mentioned user.',
-    run : async (client, message, args, db) => {
+    run : async (client, message, args) => {
         if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send("You do not have permission to kick members.");
         if (!message.guild.me.hasPermission("KICK_MEMBERS")) return message.channel.send("I do not have \`KICK_MEMBERS\` permission.");
 
