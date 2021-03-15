@@ -49,8 +49,8 @@ client.on('message', async message => {
             if (err) {
                 console.log(err);
             } else {
-                console.log("guild was added to the db")
-                client.prefix = '-'
+                console.log(`${message.guild.name} was added to the guild DB.`);
+                client.prefix = '-';
             }
         })
     } else {

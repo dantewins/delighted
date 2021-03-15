@@ -14,6 +14,7 @@ module.exports = {
         if (!args[0]) return message.channel.send('You need to state a case to remove. \`-warn case#\`');
 
         const warn = await Mongodb.findOne({ case : caseNo });
+        
         if (warn) {
             warn.remove();
             message.channel.send(`Successfully deleted case ${caseNo}.`);
