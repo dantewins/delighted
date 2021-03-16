@@ -1,6 +1,5 @@
 const Mongodb = require('../../models/guildsSchema');
 const Discord = require('discord.js');
-const { database } = require('firebase-admin');
 
 module.exports = {
     name: 'prefix',
@@ -15,8 +14,6 @@ module.exports = {
         if (!nPrefix) {
             message.channel.send(`The prefix for this server is **${prefix.prefix}**.`);
         } else {
-            
-
             if (prefix) {
                 prefix.update({
                     prefix : nPrefix

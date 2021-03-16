@@ -27,12 +27,20 @@ module.exports = {
     if (!args[0]) {
       let categories = [];
 
+      const hiddenCategories = ['warns'];
+
       readdirSync("./commands/").forEach((dir) => {
+        if (hiddenCategories.includes(dir)) return;
+
         const commands = readdirSync(`./commands/${dir}/`).filter((file) =>
           file.endsWith(".js")
         );
 
-        const cmds = commands.map((command) => {
+        const cmds = commands.filter((command) => {
+          let file = require(`../../commands/${dir}/${command}`);
+
+          return !file.hidden;
+        }).map((command) => {
           let file = require(`../../commands/${dir}/${command}`);
 
           if (!file.name) return "No command name.";
