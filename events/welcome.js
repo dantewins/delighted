@@ -6,7 +6,7 @@ module.exports = client => {
     client.on('guildMemberAdd', async (member, message) => {
         Mongodb.findOne({ guildId: member.guild.id }, async (err, data) => {
             if (err) throw err;
-            if (!data) return message.channel.send("No data!");
+            if (!data) return;
             const user = member.user;
             const image = new Canvas.Welcome()
                 .setUsername(user.username)
