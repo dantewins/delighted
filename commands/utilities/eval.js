@@ -23,6 +23,7 @@ module.exports = {
                 code: 'js'
             });
         } catch (error) {
+            console.log(error);
             message.channel.send('The output of the inputted code cannot be displayed.');
         }
     }

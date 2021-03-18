@@ -18,8 +18,8 @@ module.exports = {
         if (mentionedMember.user.id == message.author.id) return message.channel.send('You cannot kick yourself.');
         if (mentionedMember.roles.highest.position >= message.member.roles.highest.position) return message.channel.send("You cannot kick this user because this user has a same or higher role than you.");
         if (!mentionedMember.kickable) return message.channel.send("I cannot kick that user because this user has a >= role than me.");
-        if (!reason) return message.channel.send("Please state a reason. \`-kick @user reason\`");
-        if (reason == "_ _") return message.channel.send("Please state a reason. \`-kick @user reason\`");
+        if (!reason) reason = "No reason given.";
+        if (reason == "_ _") reason = "No reason given.";
 
         const kickEmbed = new Discord.MessageEmbed()
             .setTitle(`You were kicked from ${message.guild.name}`)

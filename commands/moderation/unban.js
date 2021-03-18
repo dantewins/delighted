@@ -14,9 +14,7 @@ module.exports = {
 
         if (!args[0]) return message.channel.send('You need to state a user to unban. \`-unban @user reason\`');
         if (isNaN(args[0])) return message.channel.send('The ID stated is not valid. \`-unban @user reason\`');
-        if (!reason) return message.channel.send("Please state a reason. \`-unban @user reason\`");
-        if (reason == "_ _") return message.channel.send("Please state a reason. \`-unban @user reason\`");
-
+        
         message.guild.fetchBans().then(async bans => {
             if (bans.size == 0) return message.channel.send('This server does not have anyone banned.');
             let bUser = bans.find(b => b.user.id == userID);

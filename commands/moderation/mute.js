@@ -19,8 +19,8 @@ module.exports = {
         if (mentionedMember.user.id == message.author.id) return message.channel.send('You cannot mute yourself.');
         if (mentionedMember.roles.highest.position >= message.member.roles.highest.position) return message.channel.send("You cannot mute this user because this user has a same or higher role than you.");
         if (mentionedMember.hasPermission("ADMINISTRATOR")) return message.channel.send("I cannot mute that user because this user has \`ADMINISTRATOR\` permissions.");
-        if (!reason) return message.channel.send("Please state a reason. \`-mute @user reason\`");
-        if (reason == "_ _") return message.channel.send("Please state a reason. \`-mute @user reason\`");
+        if (!reason) reason = "No reason given.";
+        if (reason == "_ _") reason = "No reason given.";
 
         if (!findRole) {
             try {

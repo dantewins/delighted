@@ -11,7 +11,6 @@ module.exports = {
 
         let reason = args.slice(1).join(" ");
         const mentionedMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-        let bans = await message.guild.fetchBans();
 
         if (!args[0]) return message.channel.send('You need to state a user to ban. \`-ban @user reason\`');
         if (!mentionedMember) return message.channel.send("The member mentioned is not in this server.");
@@ -19,9 +18,8 @@ module.exports = {
         if (mentionedMember.user.id == message.author.id) return message.channel.send('You cannot ban yourself.');
         if (mentionedMember.roles.highest.position >= message.member.roles.highest.position) return message.channel.send("You cannot ban this user because this user has a same or higher role than you.");
         if (!mentionedMember.bannable) return message.channel.send("I cannot ban that user because this user has a >= role than me.");
-        if (!reason) return message.channel.send("Please state a reason. \`-ban @user reason\`");
-        if (reason == "_ _") return message.channel.send("Please state a reason. \`-ban @user reason\`");
-        if (bans.get(mentionedMember.user.id)) return message.channel.send("This member is already banned.");
+        if (!reason) reason = "No reason given.";
+        if (reason == "_ _") reason = "No reason given";
 
         const banEmbed = new Discord.MessageEmbed()
             .setTitle(`You were banned from ${message.guild.name}`)

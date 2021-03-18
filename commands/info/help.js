@@ -27,7 +27,7 @@ module.exports = {
     if (!args[0]) {
       let categories = [];
 
-      const hiddenCategories = ['warns'];
+      const hiddenCategories = ['warns', 'welcome-channel'];
 
       readdirSync("./commands/").forEach((dir) => {
         if (hiddenCategories.includes(dir)) return;

@@ -22,8 +22,8 @@ module.exports = {
         if (mentionedMember.roles.highest.position >= message.member.roles.highest.position) return message.channel.send("You cannot temporarily mute this member because this user has a higher role than you.");
         if (mentionedMember.hasPermission("ADMINISTRATOR")) return message.channel.send("I cannot mute that user because this user has \`ADMINISTRATOR\` permissions.");
         if (!time) return message.channel.send('Please state a time. \`-tempmute @user time reason\`');
-        if (!reason) return message.channel.send("Please state a reason. \`-tempmute @user time reason\`");
-        if (reason == "_ _") return message.channel.send("Please state a reason. \`-tempmute @user time reason\`");
+        if (!reason) reason = "No reason given.";
+        if (reason == "_ _") reason = "No reason given.";
         if (!isNaN(time)) return message.channel.send('Please state a valid amount of time.')
 
         if (!findRole) {

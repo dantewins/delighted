@@ -27,6 +27,8 @@ client.categories = fs.readdirSync("./commands/");
     require(`./handlers/${handler}`)(client);
 });
 
-module.exports = client;
+fs.readdirSync('./events').filter(file => file.endsWith(".js")).forEach(event => {
+    require(`./events/${event}`)(client);
+});
 
 client.login(token);
