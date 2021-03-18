@@ -3,7 +3,7 @@ const Canvas = require('discord-canvas');
 const Mongodb = require('../models/welcomeChannelSchema');
 
 module.exports = client => {
-    client.on('guildMemberAdd', async (member) => {
+    client.on('guildMemberAdd', async (member, message) => {
         Mongodb.findOne({ guildId: member.guild.id }, async (err, data) => {
             if (err) throw err;
             if (!data) return message.channel.send("No data!");
@@ -27,7 +27,7 @@ module.exports = client => {
     
             const attachment = new Discord.MessageAttachment(
                 (await image).toBuffer(), 
-                "goodbye-image.png");
+                "welcome-image.png");
     
             const channel = member.guild.channels.cache.get(data.channelId);
             channel.send(attachment);

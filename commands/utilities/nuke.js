@@ -5,6 +5,6 @@ module.exports = {
     category: "utilities",
     description: 'Nukes the channel that you are currently in.',
     run : async (client, message, args) => {
-    
+        message.channel.send("In development.");
     }
 }

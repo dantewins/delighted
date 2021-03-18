@@ -15,13 +15,11 @@ module.exports = {
             message.channel.send(`The prefix for this server is **${prefix.prefix}**.`);
         } else {
             if (prefix) {
-                prefix.update({
-                    prefix : nPrefix
-                });
+                prefix.prefix = nPrefix;
                 prefix.save();
-                message.channel.send(`Successfully updated my prefix to **${nPrefix}**`);
+                message.channel.send(`Successfully updated my prefix to **${nPrefix}**.`);
             } else {
-                message.channel.send("error?")
+                message.channel.send("There was an error in trying to update my prefix.");
             }
         }
     }

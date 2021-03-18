@@ -12,7 +12,7 @@ module.exports = {
 
         Mongodb.find({ guildId : message.guild.id, userId : mentionedMember.user.id}, async(err, data) => {
             if(err) throw err;
-            if (data) {
+            if (data.length >= 1) {
                 message.channel.send(new Discord.MessageEmbed()
                     .setTitle(`${mentionedMember.user.tag}'s punishments.`)
                     .addFields(

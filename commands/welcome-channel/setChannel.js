@@ -5,7 +5,7 @@ module.exports = {
     name: 'setchannel',
     category: 'utilities',
     aliases: [''],
-    description: 'ALlows the user to set a specific channel as the welcome channel.',
+    description: 'Allows the user to set a specific channel as the welcome channel.',
     run : async (client, message, args) => {
         if (!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('You do not have permission to set the welcome channel.');
         
