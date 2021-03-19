@@ -9,7 +9,7 @@ module.exports = {
     run : async (client, message, args) => {
         if (!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('You do not have permission to set the welcome channel.');
 
-        if (!args[1]) return message.channel.send(`Please give a valid option **welcome** or **goodbye**.`);
+        if (!args[0]) return message.channel.send(`Please give a valid option **welcome** or **goodbye**.`);
 
         if (args[0].toLowerCase() === "welcome") {
             Mongodb.findOne({ guildId: message.guild.id, status: "Welcome" }, async (err, data) => {
@@ -31,7 +31,6 @@ module.exports = {
             });
         }
 
-        if (!args[1].toLowerCase() === "welcome" || !args[1].toLowerCase() === "goodbye") return message.channel.send(`Please give a valid option **welcome** or **goodbye**.`);
-        
+        if (args[0].toLowerCase() !== "welcome" && args[0].toLowerCase() !== "goodbye") return message.channel.send(`Please give a valid option **welcome** or **goodbye**.`);
     }
 }

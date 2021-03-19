@@ -18,7 +18,7 @@ module.exports = {
             Mongodb.findOne({ guildId: message.guild.id, status: "Welcome" }, async (err, data) => {
                 if (err) throw err;
                 if (data) {
-                    data.Channel = channel.id;
+                    data.channelId = channel.id;
                     data.save();
                 } else {
                     new Mongodb({
@@ -35,7 +35,7 @@ module.exports = {
             Mongodb.findOne({ guildId: message.guild.id, status: "Goodbye" }, async (err, data) => {
                 if (err) throw err;
                 if (data) {
-                    data.Channel = channel.id;
+                    data.channelId = channel.id;
                     data.save();
                 } else {
                     new Mongodb({
@@ -48,6 +48,6 @@ module.exports = {
             });
         }
 
-        if (!args[1].toLowerCase() === "welcome" || !args[1].toLowerCase() === "goodbye") return message.channel.send(`Please give a valid option **welcome** or **goodbye**.`);
+        if (args[1].toLowerCase() !== "welcome" && args[1].toLowerCase() !== "goodbye") return message.channel.send(`Please give a valid option **welcome** or **goodbye**.`);
     }
 }
