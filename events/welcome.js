@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const Canvas = require('discord-canvas');
-const Mongodb = require('../models/welcomeChannelSchema');
+const Mongodb = require('../models/welc-gbye-chSchema');
 
 module.exports = client => {
     client.on('guildMemberAdd', async (member, message) => {

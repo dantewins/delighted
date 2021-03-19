@@ -1,4 +1,4 @@
-const Mongodb = require('../../models/welcomeChannelSchema');
+const Mongodb = require('../../models/welc-gbye-chSchema');
 const Discord = require('discord.js');
 
 module.exports = {
@@ -10,11 +10,11 @@ module.exports = {
         if (!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('You do not have permission to set the welcome channel.');
 
         Mongodb.findOne({ guildId: message.guild.id }, async (err, data) => {
-            if (!data) return message.reply("this guild has no welcome channel set.");
+            if (!data) return message.channel.send("This guild has no welcome channel set.");
 
             const channel = client.channels.cache.get(data.channelId);
 
-            message.channel.send(`Welcome channel -> ${channel}`);
+            message.channel.send(`${data.status} channel -> ${channel}`);
         });
     }
 }

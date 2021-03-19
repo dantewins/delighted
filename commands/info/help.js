@@ -61,7 +61,7 @@ module.exports = {
       });
 
       const embed = new MessageEmbed()
-        .setTitle("📬 Need help? Here are all of my commands:")
+        .setTitle("Need help? Here are all of my commands:")
         .addFields(categories)
         .setDescription(
           `Use \`${client.prefix}help\` followed by a command name to get more additional information on a command. For example: \`${client.prefix}help ban\`.`

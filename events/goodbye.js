@@ -1,12 +1,12 @@
 const Discord = require('discord.js');
 const Canvas = require('discord-canvas');
-const Mongodb = require('../models/welcomeChannelSchema');
+const Mongodb = require('../models/welc-gbye-chSchema');
 
 module.exports = client => {
     client.on('guildMemberRemove', async (member, message) => {
         Mongodb.findOne({ guildId: member.guild.id }, async (err, data) => {
             if (err) throw err;
-            if (!data) return message.channel.send("No data!");
+            if (!data) return;
             const user = member.user;
             const image = new Canvas.Goodbye()
                 .setUsername(user.username)
