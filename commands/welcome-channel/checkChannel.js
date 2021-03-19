@@ -7,8 +7,6 @@ module.exports = {
     aliases: [''],
     description: 'Gives user information on the which channel is assigned to the welcome channel position.',
     run : async (client, message, args) => {
-        if (!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('You do not have permission to set the welcome channel.');
-
         if (!args[0]) return message.channel.send(`Please give a valid option **welcome** or **goodbye**.`);
 
         if (args[0].toLowerCase() === "welcome") {
