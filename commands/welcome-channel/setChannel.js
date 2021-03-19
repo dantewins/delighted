@@ -1,4 +1,4 @@
-const Mongodb = require('../../models/welc-gbye-chSchema');
+const Mongodb = require('../../models/welcgbyechSchema');
 const Discord = require('discord.js');
 
 module.exports = {
@@ -12,7 +12,9 @@ module.exports = {
         const channel = message.mentions.channels.first();
         if (!channel) return message.channel.send("Please mention a channel!");
 
-        if (args[1] == "welcome") {
+        if (!args[1]) return message.channel.send(`Please give a valid option **welcome** or **goodbye**.`);
+
+        if (args[1].toLowerCase() === "welcome") {
             Mongodb.findOne({ guildId: message.guild.id, status: "Welcome" }, async (err, data) => {
                 if (err) throw err;
                 if (data) {
@@ -29,7 +31,7 @@ module.exports = {
             });
         }
         
-        if (args[1] == "goodbye") {
+        if (args[1].toLowerCase() === "goodbye") {
             Mongodb.findOne({ guildId: message.guild.id, status: "Goodbye" }, async (err, data) => {
                 if (err) throw err;
                 if (data) {
@@ -46,8 +48,6 @@ module.exports = {
             });
         }
 
-        if (!args[1]) return message.channel.send(`Please give a valid option **welcome** or **goodbye**.`);
-
-        if (!args[1] == "goodbye" || "welcome") return message.channel.send(`Please give a valid option **welcome** or **goodbye**.`);
+        if (!args[1].toLowerCase() === "welcome" || !args[1].toLowerCase() === "goodbye") return message.channel.send(`Please give a valid option **welcome** or **goodbye**.`);
     }
 }

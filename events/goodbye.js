@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const Canvas = require('discord-canvas');
-const Mongodb = require('../models/welc-gbye-chSchema');
+const Mongodb = require('../models/welcgbyechSchema');
 
 module.exports = client => {
     client.on('guildMemberRemove', async (member, message) => {
