@@ -3,8 +3,8 @@ const Canvas = require('discord-canvas');
 const Mongodb = require('../models/welcgbyechSchema');
 
 module.exports = client => {
-    client.on('guildMemberRemove', async (member, message) => {
-        Mongodb.findOne({ guildId: member.guild.id }, async (err, data) => {
+    client.on('guildMemberRemove', async (member) => {
+        Mongodb.findOne({ guildId: member.guild.id, status: "Goodbye" }, async (err, data) => {
             if (err) throw err;
             if (!data) return;
             const user = member.user;
