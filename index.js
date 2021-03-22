@@ -17,7 +17,6 @@ mongoose.connect('mongodb+srv://Delighted:zCoXEr8Qdqihgcle@delighted.7zbf2.mongo
 
 const config = require('./config.json');
 const token = config.token;
-const prefix = config.prefix;
 
 client.commands = new Collection();
 client.aliases = new Collection();

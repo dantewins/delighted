@@ -1,4 +1,4 @@
-const { afk } = require('../Collection');
+const { afk, guilds } = require('../Collection');
 const moment = require('moment');
 
 module.exports = client => {
@@ -8,7 +8,7 @@ module.exports = client => {
         const mentionedMember = message.mentions.members.first();
 
         if (mentionedMember) {
-            const data = afk.get(mentionedMember.id, message.guild.id);
+            const data = afk.get(mentionedMember.id);
 
             if (data) {
                 const [timestamp, reason] = data;
@@ -20,7 +20,7 @@ module.exports = client => {
 
         const getData = afk.get(message.author.id, message.guild.id);
         if (getData) {
-            afk.delete(message.author.id, message.guild.id);
+            afk.delete(message.author.id);
             message.channel.send(`Welcome back ${message.member}, I removed your afk.`).then(message =>{
                 message.delete({
                     timeout: 4000
