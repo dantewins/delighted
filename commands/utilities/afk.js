@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { afk, guilds } = require("../../Collection");
+const { afk } = require("../../Collection");
 
 module.exports = {
     name: 'afk',
@@ -7,11 +7,17 @@ module.exports = {
     aliases: [''],
     description: "Sets the user's status as 'afk'.",
     run : async (client, message, args) => {
-        const reason = args.slice(0).join(" ") || "afk";
+        // const reason = args.slice(0).join(" ") || "afk";
 
-        afk.set(message.author.id [Date.now(), reason]);
-        guilds.set(message.guild.id, new Collection());
+        // if (!afk.has(message.guild.id)) {
+        //     afk.set(message.guild.id, new Discord.Collection());
+        // }
 
-        message.channel.send(`${message.author}, I set your afk: ${reason}.`);
+        // const extra = afk.get(message.guild.id);
+        // extra.set(message.author.id, { timestamp: Date.now(), reason: reason });
+
+        // message.channel.send(`${message.author}, I set your afk: ${reason}.`);
+
+        message.channel.send("In development.");
     },
 };

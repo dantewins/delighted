@@ -1,6 +1,5 @@
-const { Collection } = require('discord.js');
+// const { Collection } = require('discord.js');
 
-const afk = new Collection();
-const guilds = new Collection();
+// const afk = new Collection();
 
-module.exports = { afk, guilds };
+// module.exports = { afk };
